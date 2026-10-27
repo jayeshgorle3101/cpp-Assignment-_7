@@ -1,0 +1,72 @@
+
+#include <iostream>
+using namespace std;
+
+// Compile-time polymorphism
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+
+// Runtime polymorphism
+class Animal {
+public:
+    virtual void sound() {
+        cout << "Animal makes a sound." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void sound() override {
+        cout << "Dog barks." << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void sound() override {
+        cout << "Cat meows." << endl;
+    }
+};
+
+int main() {
+    // Function overloading
+    cout << "COMPILE-TIME POLYMORPHISM" << endl;
+
+    Calculator c;
+    cout << "Addition of 2 integers: "
+         << c.add(10, 20) << endl;
+
+    cout << "Addition of 3 integers: "
+         << c.add(10, 20, 30) << endl;
+
+    cout << "Addition of 2 decimal numbers: "
+         << c.add(2.5, 3.5) << endl;
+
+    // Function overriding and virtual functions
+    cout << "\nRUNTIME POLYMORPHISM" << endl;
+
+    Animal* a;
+
+    Dog d;
+    Cat ct;
+
+    a = &d;
+    a->sound();
+
+    a = &ct;
+    a->sound();
+
+    return 0;
+}
